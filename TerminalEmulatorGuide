@@ -1,0 +1,20 @@
+#Rough guide to use your Atari or other retro computer as a dumb terminal for your Mac with a USB-Serial adapter
+#You'll be using 'screen' to open a serial connection between the shell host and the dumb terminal
+#wnetto 4/29/20
+
+#Launch the terminal emulator on your Atari
+#Connect your USB-Serial adapter to both machines
+#On the host, use whatever your serial device is after the screen command, then the baud rate you'd like to use
+#screen <serial device> <baud rate>
+#The serial device name can be found via ls /dev/tty.*
+
+screen tty.usbserial-XXX 9600
+
+#You can verify connectivity between the modern machine and the Atari by typing on either, the output should be mirrored on the other end
+#Press Control+A then Shift+: on the host, then paste the line below to mirror your shell to the Atari
+#Make sure your baud setting matches after the std.XXX portion
+
+exec ::: /usr/libexec/getty std.9600
+
+#text input will be ddoouubblleedd or tttrrriiipppllleeeddd on the host terminal output, but everything works normally on the Atari
+#Obviously an 80 column terminal emulator is better for this
